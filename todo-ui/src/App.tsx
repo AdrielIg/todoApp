@@ -1,25 +1,31 @@
 import React from "react";
 
 import "./App.css";
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import OtherPage from "./OtherPage";
+import MainComponent from "./MainComponent";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <BrowserRouter>
+        <Component />
+        <Routes>
+          <Route path="/" element={<MainComponent />} />
+          <Route path="/otherPage" element={<OtherPage />} />
+        </Routes>
+      </BrowserRouter>
+    </>
   );
 }
+
+const Component = () => {
+  return (
+    <header>
+      <Link to={"/"}>Home</Link>
+      <Link to={"/otherpage"}>Other Page</Link>
+    </header>
+  );
+};
 
 export default App;

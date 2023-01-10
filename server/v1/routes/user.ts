@@ -9,7 +9,7 @@ router.route("/").get((req, res) => {
 router.route("/values/all").get(async (req, res) => {
 	const values = await pgClient.query("SELECT * FROM values");
 
-	res.send(values);
+	res.send({ data: values });
 });
 
 router.route("values").post(async (req, res) => {
