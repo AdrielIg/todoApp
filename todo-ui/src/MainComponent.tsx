@@ -7,8 +7,9 @@ const MainComponent = () => {
 
   const getAllNumbers = useCallback(async (): Promise<void> => {
     // we will use nginx to redirect it to the proper URL
-    const values: number[] = await axios.get("/vi/api/values/all");
-    setValues(values);
+    const values: any = await axios.get("/v1/api/values/all");
+    console.log({ values });
+    // setValues(values);
   }, []);
 
   const saveNumber = useCallback(
@@ -25,11 +26,11 @@ const MainComponent = () => {
   );
 
   useEffect(() => {
-    getAllNumbers()
-      .then((numbers: any) => setValues(numbers))
-      .catch((e) => {
-        console.log(e);
-      });
+    // getAllNumbers()
+    //   .then((numbers: any) => setValues(numbers))
+    //   .catch((e) => {
+    //     console.log(e);
+    //   });
   });
 
   return (
@@ -37,7 +38,7 @@ const MainComponent = () => {
       <button onClick={getAllNumbers}>Get all numbers</button>
       <h4>values</h4>
       <div>
-        {values.map((value, i) => (
+        {values?.map((value, i) => (
           <p key={i}>{value}</p>
         ))}
       </div>
