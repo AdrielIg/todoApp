@@ -7,12 +7,13 @@ router.route("/").get((req, res) => {
 });
 
 router.route("/values/all").get(async (req, res) => {
+	console.log("TEST");
 	const values = await pgClient.query("SELECT * FROM values");
 
 	res.send({ data: values });
 });
 
-router.route("values").post(async (req, res) => {
+router.route("/values").post(async (req, res) => {
 	if (req.body.value) res.send({ working: false });
 	pgClient.query("INSERT INTO values(number) VALUES($1)", [req.body.value]);
 	res.send({ working: true });

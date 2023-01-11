@@ -7,12 +7,12 @@ const PORT = process.env.PORT || 5000;
 const app = express();
 app.use(cors());
 app.use(express.json());
-app.use("v1/api", v1RouterUser);
+app.use(v1RouterUser);
 
 app.get("/", (req, res) => {
 	res.send("HI");
 });
 
 app.listen(PORT, () => {
-	console.log("Listening on Port" + PORT);
+	console.log("Listening on Port " + PORT);
 });
